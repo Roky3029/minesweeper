@@ -6,7 +6,7 @@ import tableToArray from './utils/tableToArray.ts'
 import handleDiscover from './functions/handleDiscover.ts'
 import { handleReset } from './functions/handleReset.ts'
 
-const grid = createGrid(10)
+const grid = createGrid(2)
 
 const handleClickingLogic = () => {
 	const cells = document.querySelectorAll('.cell')

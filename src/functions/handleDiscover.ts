@@ -40,13 +40,10 @@ const handleDiscover = (
 
 	htmlElement.classList.add(colors[cellValue as keyof typeof colors])
 
-	if (cellValue != 0) {
-		return // No continuar si no es una celda vacía inicial
-	}
+	if (cellValue != 0) return // Do not continue if the cellValue is different than zero (it has mines in its surroundings)
 
-	if (cellValue == 0) {
-		revealAdjacentCells(x, y, board)
-	}
+	// This means that cellValue must be different than 0
+	revealAdjacentCells(x, y, board)
 }
 
 export default handleDiscover
