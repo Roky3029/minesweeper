@@ -7,11 +7,17 @@
 		<title>Minesweeper</title>
 	</head>
 	<body>
+		<div class="gameStatus">
+			<p id="mineCounter"></p>
+			<p id="timeCounter"></p>
+			<p id="nonMineCounter"></p>
+		</div>
 		<div id="matrix-container"></div>
 		<div id="game-over">
 			<p id="game-over-text"></p>
 			<button id="reset-button">Reset game</button>
 		</div>
+
 		<script type="module" src="/src/main.ts"></script>
 	</body>
 </html>

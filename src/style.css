@@ -36,7 +36,8 @@ td {
 }
 
 .show {
-	color: black;
+	color: white;
+	background-color: #9a9a9a;
 }
 
 .blue {
@@ -79,6 +80,7 @@ td {
 	font-size: 30px;
 	font-weight: 900;
 	text-transform: uppercase;
+	color: white;
 	text-align: center;
 	display: none;
 }
@@ -100,4 +102,22 @@ td {
 
 #game-over.lost {
 	display: block;
+}
+
+.gameStatus {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 200px;
+}
+
+#mineCounter,
+#timeCounter {
+	color: white;
+	font-size: 30px;
+	text-align: center;
+}
+
+#nonMineCounter {
+	display: none;
 }

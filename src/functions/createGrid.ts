@@ -1,4 +1,6 @@
+import { calcMines } from '../utils/calcMines'
 import { countAdjacentMines } from './countAdjacentMines'
+import { setMineCounter } from './setMineCounter'
 
 const randomIntFromInterval = (min: number, max: number) => {
 	// min and max included
@@ -6,7 +8,7 @@ const randomIntFromInterval = (min: number, max: number) => {
 }
 
 export const createGrid = (size: number) => {
-	const numberOfMines = Math.ceil(0.3 * size * size)
+	const numberOfMines = calcMines(size)
 
 	// Creating the field with the specified length
 	let field: (undefined | string | number)[][] = []
@@ -28,6 +30,8 @@ export const createGrid = (size: number) => {
 
 		field[row][col] = 'M'
 	}
+
+	setMineCounter(numberOfMines)
 
 	return countAdjacentMines(field)
 }

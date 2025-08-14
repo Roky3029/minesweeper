@@ -1,5 +1,12 @@
+import { calcMines } from '../utils/calcMines'
+
 const renderMatrix = (matrix: (string | number | undefined)[][]) => {
 	const container = document.getElementById('matrix-container')
+	const safeSquares = document.getElementById('nonMineCounter')
+	;(safeSquares as HTMLElement).textContent = (
+		matrix.length * matrix.length -
+		calcMines(matrix.length)
+	).toString()
 	const table = document.createElement('table')
 
 	matrix.forEach((row, i) => {

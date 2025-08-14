@@ -2,6 +2,8 @@
 
 This is a simple but interesting minesweeper game. I suppose all of you know how to play this game, but just in case, I will explain in detail the rules of the game in this README.
 
+It is made in vanilla HTML, CSS and JavaScript, however, for simplicity's sake, I used Vite in order to have a more modular project
+
 ### How to play?
 
 Your main objective in Minesweeper is to clear the field of mines. There will be a number of mines distributed among the board, and you will have to deduce where they are in order to win. The game ends when you discover all the numbered tiles or place a flag on all the mines.
