@@ -1,5 +1,6 @@
 import { revealAdjacentCells } from '../utils/revealAdjacentCells'
 import { interval } from './handleStopwatch'
+import { triggerWin } from './triggerWin'
 
 const handleDiscover = (
 	board: (string | number)[][],
@@ -49,14 +50,16 @@ const handleDiscover = (
 
 	// After here we are sure that the selected tile is not a mine but a number
 	htmlElement.classList.add(colors[cellValue as keyof typeof colors])
+	let safeSquares = document.getElementById('nonMineCounter')
+	if (safeSquares)
+		safeSquares.textContent = (+safeSquares.textContent - 1).toString()
+
+	if (+(safeSquares as HTMLElement).textContent === 0) triggerWin()
 
 	if (cellValue != 0) return // Do not continue if the cellValue is different than zero (it has mines in its surroundings)
 
 	// This means that cellValue must be different than 0
-	const container = document.getElementById('matrix-container')
-	let nofcells = (container as HTMLElement).dataset.nofcells
 
-	if (nofcells) nofcells = (+nofcells - 1).toString()
 	revealAdjacentCells(x, y, board)
 }
 
