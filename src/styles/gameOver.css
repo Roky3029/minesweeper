@@ -1,0 +1,31 @@
+.game-over {
+	pointer-events: none;
+}
+
+#game-over {
+	font-size: 30px;
+	font-weight: 900;
+	text-transform: uppercase;
+	color: white;
+	text-align: center;
+	display: none;
+}
+
+#game-over > button {
+	border: none;
+	padding: 30px 50px;
+	font-size: 20px;
+	border-radius: 10px;
+	background-color: #cccccc;
+	cursor: pointer;
+	transition: 0.3s all;
+}
+
+#game-over > button:hover {
+	background-color: #9a9a9a;
+	scale: 1.05;
+}
+
+#game-over.lost {
+	display: block;
+}

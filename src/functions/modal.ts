@@ -1,24 +1,7 @@
-// $('.button').click(function () {
-// 	var buttonId = $(this).attr('id')
-// 	$('#modal-container').removeAttr('class').addClass(buttonId)
-// 	$('body').addClass('modal-active')
-// })
-
 import { createGrid } from './createGrid'
+import { handleClickingLogic } from './handleClickingLogic'
+import { handleStopwatch, interval } from './handleStopwatch'
 import renderMatrix from './renderMatrix'
-
-// $('#modal-container').click(function () {
-// 	$(this).addClass('out')
-// 	$('body').removeClass('modal-active')
-// })
-
-// export const revealModal = () => {
-// 	const modalContainer = document.getElementById('modal-container')
-// 	const body = document.querySelector('body')
-// 	modalContainer?.removeAttribute('class')
-// 	modalContainer?.classList.add('two')
-// 	body?.classList.add('modal-active')
-// }
 
 const revealModal = () => {
 	const modalContainer = document.getElementById('modal-container')
@@ -35,10 +18,11 @@ const hideModal = () => {
 	const body = document.body
 	if (!modalContainer) return
 
-	modalContainer.addEventListener('click', () => {
-		modalContainer.classList.add('out')
-		body.classList.remove('modal-active')
-	})
+	modalContainer.classList.add('out')
+	body.classList.remove('modal-active')
+	setTimeout(() => {
+		modalContainer.removeAttribute('class')
+	}, 100)
 }
 
 const handleSizeLogic = () => {
@@ -87,19 +71,28 @@ const handleResetGame = () => {
 
 		const grid = createGrid(+size, +density)
 		renderMatrix(grid)
+		handleClickingLogic()
+		clearInterval(interval)
+		handleStopwatch()
 		hideModal()
 	})
 }
 
 export const handleModal = () => {
-	const openModal = () => {
+	const showHideModal = () => {
 		const btn = document.getElementById('btn')
+		const cross = document.getElementById('cross')
+
 		btn?.addEventListener('click', () => {
 			revealModal()
 		})
+
+		cross?.addEventListener('click', () => {
+			hideModal()
+		})
 	}
 
-	openModal()
+	showHideModal()
 	handleSizeLogic()
 	handleDensityLogic()
 	handleResetGame()

@@ -29,7 +29,11 @@ const handleDiscover = (
 	const cellValue = htmlElement.dataset.value
 
 	htmlElement.classList.add('show')
-	htmlElement.textContent = cellValue
+	if (+cellValue === 0) {
+		htmlElement.textContent = ''
+	} else {
+		htmlElement.textContent = cellValue
+	}
 
 	if (cellValue === 'M') {
 		// GAME OVER IS TRIGGERED

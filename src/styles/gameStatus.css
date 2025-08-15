@@ -1,0 +1,28 @@
+.gameStatus {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 200px;
+}
+
+#mineCounter,
+#timeCounter {
+	color: white;
+	font-size: 30px;
+	text-align: center;
+}
+
+#nonMineCounter {
+	display: none;
+}
+
+button#btn {
+	border: none;
+	padding: 30px 50px;
+	font-size: 20px;
+	border-radius: 10px;
+	background-color: #cccccc;
+	cursor: pointer;
+	transition: 0.3s all;
+	margin-bottom: 40px;
+}
