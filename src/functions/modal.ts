@@ -1,3 +1,7 @@
+import {
+	getParametersFromLocalStorage,
+	saveParametersToLocalStorage
+} from '../utils/accessLocalStorage'
 import { createGrid } from './createGrid'
 import { handleClickingLogic } from './handleClickingLogic'
 import { handleStopwatch, interval } from './handleStopwatch'
@@ -9,8 +13,18 @@ const revealModal = () => {
 	if (!modalContainer) return
 
 	modalContainer.classList.remove('out')
-	modalContainer.classList.add('two')
+	modalContainer.classList.add('variant')
 	body.classList.add('modal-active')
+
+	// we have to set the values for the counters
+	const data = getParametersFromLocalStorage()
+	const size = document.getElementById('customSize')
+	const density = document.getElementById('mineDensity')
+
+	if (!size || !density) return
+
+	size.textContent = data ? data.size.toString() : '10'
+	density.textContent = data ? data.density.toString() : '0.1'
 }
 
 const hideModal = () => {
@@ -51,7 +65,7 @@ const handleDensityLogic = () => {
 	if (!density || !upDensity || !downDensity) return
 
 	upDensity?.addEventListener('click', () => {
-		if (+density.textContent >= 0.9) return
+		if (+density.textContent >= 0.5) return
 		density.textContent = (+density.textContent + 0.1).toFixed(1).toString()
 	})
 
@@ -74,6 +88,7 @@ const handleResetGame = () => {
 		handleClickingLogic()
 		clearInterval(interval)
 		handleStopwatch()
+		saveParametersToLocalStorage(+size, +density)
 		hideModal()
 	})
 }

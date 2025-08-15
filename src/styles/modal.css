@@ -21,37 +21,37 @@
 	z-index: 99999;
 }
 
-#modal-container.two {
+#modal-container.variant {
 	transform: scale(1);
 }
 
-#modal-container.two .modal-background {
+#modal-container.variant .modal-background {
 	background: rgba(0, 0, 0, 0);
 	animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-#modal-container.two .modal-background .modal {
+#modal-container.variant .modal-background .modal {
 	opacity: 0;
 	animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-#modal-container.two + .content {
+#modal-container.variant + .content {
 	animation: scaleBack 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-#modal-container.two.out {
+#modal-container.variant.out {
 	animation: quickScaleDown 0s 0.5s linear forwards;
 }
 
-#modal-container.two.out .modal-background {
+#modal-container.variant.out .modal-background {
 	animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-#modal-container.two.out .modal-background .modal {
+#modal-container.variant.out .modal-background .modal {
 	animation: scaleDown 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-#modal-container.two.out + .content {
+#modal-container.variant.out + .content {
 	animation: scaleForward 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
