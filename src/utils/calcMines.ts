@@ -1,3 +1,3 @@
-export const calcMines = (size: number) => {
-	return Math.ceil(0.1 * size * size)
+export const calcMines = (size: number, density: number) => {
+	return Math.ceil(density * size * size)
 }

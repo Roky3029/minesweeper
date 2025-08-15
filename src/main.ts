@@ -6,8 +6,9 @@ import tableToArray from './utils/tableToArray.ts'
 import handleDiscover from './functions/handleDiscover.ts'
 import { handleReset } from './functions/handleReset.ts'
 import { handleStopwatch } from './functions/handleStopwatch.ts'
+import { handleModal } from './functions/modal.ts'
 
-const grid = createGrid(10)
+const grid = createGrid(10, 0.1)
 
 const handleClickingLogic = () => {
 	const cells = document.querySelectorAll('.cell')
@@ -33,6 +34,6 @@ const handleClickingLogic = () => {
 }
 
 renderMatrix(grid)
-
 handleClickingLogic()
 handleReset()
+handleModal()

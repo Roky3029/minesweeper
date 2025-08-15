@@ -7,8 +7,8 @@ const randomIntFromInterval = (min: number, max: number) => {
 	return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-export const createGrid = (size: number) => {
-	const numberOfMines = calcMines(size)
+export const createGrid = (size: number, density: number) => {
+	const numberOfMines = calcMines(size, density)
 
 	// Creating the field with the specified length
 	let field: (undefined | string | number)[][] = []

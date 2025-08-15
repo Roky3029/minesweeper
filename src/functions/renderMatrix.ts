@@ -5,8 +5,13 @@ const renderMatrix = (matrix: (string | number | undefined)[][]) => {
 	const safeSquares = document.getElementById('nonMineCounter')
 	;(safeSquares as HTMLElement).textContent = (
 		matrix.length * matrix.length -
-		calcMines(matrix.length)
+		calcMines(matrix.length, 0.1)
 	).toString()
+
+	// this handles the case when we want to create a new game, to prevent the boards from appearing and not being deleted
+	const child = document.querySelector('table')
+	if (child) child?.remove()
+
 	const table = document.createElement('table')
 
 	matrix.forEach((row, i) => {

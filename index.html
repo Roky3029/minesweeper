@@ -7,6 +7,30 @@
 		<title>Minesweeper</title>
 	</head>
 	<body>
+		<div id="modal-container">
+			<div class="modal-background">
+				<div class="modal">
+					<h2>Configuration</h2>
+
+					<div class="parameters">
+						<div class="container">
+							<p>Size</p>
+							<p id="customSize">10</p>
+							<button id="moreSize">+</button>
+							<button id="lessSize">-</button>
+						</div>
+
+						<div class="container">
+							<p>Density</p>
+							<p id="mineDensity">0.1</p>
+							<button id="moreDensity">+</button>
+							<button id="lessDensity">-</button>
+						</div>
+					</div>
+					<button id="restart">New game</button>
+				</div>
+			</div>
+		</div>
 		<div class="gameStatus">
 			<p id="mineCounter"></p>
 			<p id="timeCounter"></p>
@@ -21,6 +45,8 @@
 			<p id="won-text">CONTRATULATIONS. You've beaten the game in 12:20</p>
 			<button id="reset-button">Reset game</button>
 		</div>
+
+		<button id="btn">Custom parameters</button>
 
 		<script type="module" src="/src/main.ts"></script>
 	</body>
