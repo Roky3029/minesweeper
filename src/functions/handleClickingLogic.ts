@@ -1,11 +1,11 @@
-import tableToArray from '../utils/tableToArray'
+import { calcNumbers, placeMines } from './generateBoard'
 import handleDiscover from './handleDiscover'
 import handlePlaceFlag from './handlePlaceFlag'
 import { handleStopwatch } from './handleStopwatch'
+import renderMatrix from './renderMatrix'
 
-export const handleClickingLogic = () => {
+export const handleClickingLogic = (grid: any[][]) => {
 	const cells = document.querySelectorAll('.cell')
-	const board = document.querySelector('table')
 
 	cells.forEach(c => {
 		// Normal click, to reveal the number in the cell
@@ -13,17 +13,26 @@ export const handleClickingLogic = () => {
 			if (document.getElementById('timeCounter')?.textContent === '') {
 				handleStopwatch()
 			}
+			const [row, col] = c.id.split('-')
+			if ((c as HTMLElement).dataset.value === 'undefined') {
+				placeMines(grid, 0.1, +row, +col)
+				calcNumbers(grid)
+				renderMatrix(grid)
+				handleClickingLogic(grid)
+			}
 
-			const id = c.id.split('-')
-			handleDiscover(tableToArray(board as HTMLTableElement), +id[0], +id[1], c)
+			const element = document.getElementById(`${row}-${col}`)
+			handleDiscover(grid, +row, +col, element)
 		})
 
 		// Right click, to place a flag
 		c.addEventListener('contextmenu', e => {
-			if (document.getElementById('timeCounter')?.textContent === '') {
-				handleStopwatch()
-			}
-			handlePlaceFlag(c, e)
+			e.preventDefault()
+			if ((c as HTMLElement).dataset.value !== 'undefined')
+				handlePlaceFlag(c, e)
+			// if (document.getElementById('timeCounter')?.textContent === '') {
+			// 	handleStopwatch()
+			// }
 		})
 	})
 }

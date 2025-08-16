@@ -2,7 +2,7 @@ import {
 	getParametersFromLocalStorage,
 	saveParametersToLocalStorage
 } from '../utils/accessLocalStorage'
-import { createGrid } from './createGrid'
+import { generateBoard } from './generateBoard'
 import { handleClickingLogic } from './handleClickingLogic'
 import { handleStopwatch, interval } from './handleStopwatch'
 import renderMatrix from './renderMatrix'
@@ -18,12 +18,14 @@ const revealModal = () => {
 
 	// we have to set the values for the counters
 	const data = getParametersFromLocalStorage()
-	const size = document.getElementById('customSize')
+	const row = document.getElementById('row')
+	const col = document.getElementById('col')
 	const density = document.getElementById('mineDensity')
 
-	if (!size || !density) return
+	if (!row || !col || !density) return
 
-	size.textContent = data ? data.size.toString() : '10'
+	row.textContent = data ? data.row.toString() : '10'
+	col.textContent = data ? data.col.toString() : '10'
 	density.textContent = data ? data.density.toString() : '0.1'
 }
 
@@ -40,20 +42,82 @@ const hideModal = () => {
 }
 
 const handleSizeLogic = () => {
-	const size = document.getElementById('customSize')
-	const upSize = document.getElementById('moreSize')
-	const downSize = document.getElementById('lessSize')
+	const row = document.getElementById('row')
+	const upRow = document.getElementById('moreRow')
+	const downRow = document.getElementById('lessRow')
 
-	if (!size || !upSize || !downSize) return
+	const col = document.getElementById('col')
+	const upCol = document.getElementById('moreCol')
+	const downCol = document.getElementById('lessCol')
 
-	upSize?.addEventListener('click', () => {
-		if (+size.textContent === 20) return
-		size.textContent = (+size.textContent + 1).toString()
+	if (!row || !upRow || !downRow || !col || !upCol || !downCol) return
+
+	if (+row.textContent === 10) {
+		downRow.classList.add('disabled')
+	} else if (+row.textContent === 20) {
+		upRow.classList.add('disabled')
+	}
+
+	if (+col.textContent === 10) {
+		downCol.classList.add('disabled')
+	} else if (+col.textContent === 20) {
+		upCol.classList.add('disabled')
+	}
+
+	upRow?.addEventListener('click', () => {
+		if (downRow.classList.contains('disabled'))
+			downRow.classList.remove('disabled')
+		const r = +row.textContent
+
+		if (r === 20) {
+			return
+		} else {
+			row.textContent = (r + 1).toString()
+
+			if (+row.textContent === 20) upRow.classList.add('disabled')
+		}
 	})
 
-	downSize?.addEventListener('click', () => {
-		if (+size.textContent === 10) return
-		size.textContent = (+size.textContent - 1).toString()
+	downRow?.addEventListener('click', () => {
+		if (upRow.classList.contains('disabled')) upRow.classList.remove('disabled')
+
+		const r = +row.textContent
+
+		if (r === 10) {
+			return
+		} else {
+			row.textContent = (r - 1).toString()
+
+			if (+row.textContent === 10) downRow.classList.add('disabled')
+		}
+	})
+
+	upCol?.addEventListener('click', () => {
+		if (downCol.classList.contains('disabled'))
+			downCol.classList.remove('disabled')
+		const c = +col.textContent
+
+		if (c === 20) {
+			return
+		} else {
+			col.textContent = (c + 1).toString()
+
+			if (+col.textContent === 20) upCol.classList.add('disabled')
+		}
+	})
+
+	downCol?.addEventListener('click', () => {
+		if (upCol.classList.contains('disabled')) upCol.classList.remove('disabled')
+
+		const c = +col.textContent
+
+		if (c === 10) {
+			return
+		} else {
+			col.textContent = (c - 1).toString()
+
+			if (+col.textContent === 10) downCol.classList.add('disabled')
+		}
 	})
 }
 
@@ -64,31 +128,58 @@ const handleDensityLogic = () => {
 
 	if (!density || !upDensity || !downDensity) return
 
+	if (+density.textContent >= 0.5) {
+		upDensity.classList.add('disabled')
+	} else if (+density.textContent <= 0.1) {
+		downDensity.classList.add('disabled')
+	}
+
 	upDensity?.addEventListener('click', () => {
-		if (+density.textContent >= 0.5) return
-		density.textContent = (+density.textContent + 0.1).toFixed(1).toString()
+		if (downDensity.classList.contains('disabled'))
+			downDensity.classList.remove('disabled')
+
+		const d = +density.textContent
+
+		if (d >= 0.5) {
+			return
+		} else {
+			density.textContent = (d + 0.1).toFixed(1).toString()
+
+			if (+density.textContent >= 0.5) upDensity.classList.add('disabled')
+		}
 	})
 
 	downDensity?.addEventListener('click', () => {
-		if (+density.textContent <= 0.1) return
-		density.textContent = (+density.textContent - 0.1).toFixed(1).toString()
+		if (upDensity.classList.contains('disabled'))
+			upDensity.classList.remove('disabled')
+
+		const d = +density.textContent
+
+		if (d <= 0.1) {
+			return
+		} else {
+			density.textContent = (d - 0.1).toFixed(1).toString()
+
+			if (+density.textContent <= 0.1) downDensity.classList.add('disabled')
+		}
 	})
 }
 
 const handleResetGame = () => {
 	const resetButton = document.getElementById('restart')
 	resetButton?.addEventListener('click', () => {
-		const size = document.getElementById('customSize')?.textContent
+		const row = document.getElementById('row')?.textContent
+		const col = document.getElementById('col')?.textContent
 		const density = document.getElementById('mineDensity')?.textContent
 
-		if (!size || !density) return
+		if (!row || !col || !density) return
 
-		const grid = createGrid(+size, +density)
+		const grid = generateBoard(+row, +col)
 		renderMatrix(grid)
-		handleClickingLogic()
+		handleClickingLogic(grid)
 		clearInterval(interval)
 		handleStopwatch()
-		saveParametersToLocalStorage(+size, +density)
+		saveParametersToLocalStorage(+row, +col, +density)
 		hideModal()
 	})
 }

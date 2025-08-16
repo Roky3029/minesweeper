@@ -1,4 +1,6 @@
-const tableToArray = (table: HTMLTableElement): (number | string)[][] => {
+export const tableToArray = (
+	table: HTMLTableElement
+): (number | string)[][] => {
 	if (!table) {
 		throw new Error('Tabla no encontrada')
 	}
@@ -21,4 +23,26 @@ const tableToArray = (table: HTMLTableElement): (number | string)[][] => {
 	return array
 }
 
-export default tableToArray
+const arrayToTable = (data: (number | string)[][]): HTMLTableElement => {
+	if (!data || data.length === 0) {
+		throw new Error('Array vacío')
+	}
+
+	const table = document.createElement('table')
+
+	for (const rowData of data) {
+		const row = document.createElement('tr')
+
+		for (const cellData of rowData) {
+			const cell = document.createElement('td')
+			cell.textContent = String(cellData) // Keep "M" as string, numbers auto-convert
+			row.appendChild(cell)
+		}
+
+		table.appendChild(row)
+	}
+
+	return table
+}
+
+export default arrayToTable

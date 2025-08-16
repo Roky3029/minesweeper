@@ -1,10 +1,15 @@
 type Parameters = {
-	size: number
+	row: number
+	col: number
 	density: number
 }
 
-export const saveParametersToLocalStorage = (size: number, density: number) => {
-	const data: Parameters = { size, density }
+export const saveParametersToLocalStorage = (
+	row: number,
+	col: number,
+	density: number
+) => {
+	const data: Parameters = { row, col, density }
 
 	localStorage.setItem('parameters', JSON.stringify(data))
 }

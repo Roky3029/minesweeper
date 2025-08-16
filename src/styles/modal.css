@@ -150,3 +150,31 @@
 	fill: rgba(0, 0, 0, 0.6);
 	cursor: pointer;
 }
+
+#modal-container .size {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+#modal-container .buttons-wrapper {
+	display: flex;
+	gap: 15px;
+}
+
+#modal-container .buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+#modal-container .container {
+	user-select: none;
+}
+
+#modal-container .disabled {
+	background: #aaa !important;
+	scale: 0.8;
+	pointer-events: none;
+}
