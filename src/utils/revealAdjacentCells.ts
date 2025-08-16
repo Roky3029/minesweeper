@@ -1,21 +1,11 @@
 import handleDiscover from '../functions/handleDiscover'
+import { directions } from './constants'
 
 export const revealAdjacentCells = (
 	x: number,
 	y: number,
 	board: (string | number)[][]
 ) => {
-	const directions = [
-		[-1, -1],
-		[-1, 0],
-		[-1, 1],
-		[0, -1],
-		[0, 1],
-		[1, -1],
-		[1, 0],
-		[1, 1]
-	]
-
 	for (const [dx, dy] of directions) {
 		const nx = x + dx
 		const ny = y + dy

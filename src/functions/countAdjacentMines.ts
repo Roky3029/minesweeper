@@ -1,19 +1,11 @@
+import { directions } from '../utils/constants'
+
 const countMines = (
 	row: number,
 	col: number,
 	field: (undefined | string | number)[][]
 ): number => {
 	let counter = 0
-	const directions = [
-		[-1, -1],
-		[-1, 0],
-		[-1, 1],
-		[0, -1],
-		[0, 1],
-		[1, -1],
-		[1, 0],
-		[1, 1]
-	]
 
 	for (let i = 0; i < directions.length; i++) {
 		const newRow = row + directions[i][0]
