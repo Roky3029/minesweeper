@@ -5,6 +5,9 @@ export const triggerWin = () => {
 	const wonWrapper = document.getElementById('won')
 	const text = document.getElementById('won-text')
 	const totalTime = document.getElementById('timeCounter')
+
+	if (!totalTime) return
+
 	const [min, sec] = (totalTime as HTMLElement)?.textContent.split(':')
 
 	body?.classList.add('won')

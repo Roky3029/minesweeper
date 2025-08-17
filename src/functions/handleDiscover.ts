@@ -43,8 +43,10 @@ const handleDiscover = (
 	// After here we are sure that the selected tile is not a mine but a number
 	htmlElement.classList.add(colors[cellValue as keyof typeof colors])
 	let safeSquares = document.getElementById('nonMineCounter')
-	if (safeSquares)
-		safeSquares.textContent = (+safeSquares.textContent - 1).toString()
+
+	if (!safeSquares) return
+
+	safeSquares.textContent = (+safeSquares.textContent - 1).toString()
 
 	if (+(safeSquares as HTMLElement).textContent === 0) triggerWin()
 

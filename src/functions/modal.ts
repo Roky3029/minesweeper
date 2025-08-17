@@ -16,6 +16,8 @@ const handleUpwardsResizing = (
 ) => {
 	if (downButton.classList.contains('disabled'))
 		downButton.classList.remove('disabled')
+
+	if (!parameter.textContent) return
 	const r = +parameter.textContent
 
 	if (r >= bound) {
@@ -39,6 +41,8 @@ const handleDownwardsResizing = (
 ) => {
 	if (upButton.classList.contains('disabled'))
 		upButton.classList.remove('disabled')
+
+	if (!parameter.textContent) return
 
 	const r = +parameter.textContent
 
