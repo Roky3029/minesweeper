@@ -44,7 +44,7 @@ const handleDiscover = (
 	htmlElement.classList.add(colors[cellValue as keyof typeof colors])
 	let safeSquares = document.getElementById('nonMineCounter')
 
-	if (!safeSquares) return
+	if (!safeSquares?.textContent) return
 
 	safeSquares.textContent = (+safeSquares.textContent - 1).toString()
 

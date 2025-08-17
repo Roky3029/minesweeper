@@ -8,7 +8,7 @@ export const triggerWin = () => {
 
 	if (!totalTime) return
 
-	const [min, sec] = (totalTime as HTMLElement)?.textContent.split(':')
+	const [min, sec] = totalTime.textContent.split(':')
 
 	body?.classList.add('won')
 	wonWrapper?.classList.add('victory')
