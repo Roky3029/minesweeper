@@ -7,7 +7,7 @@ export const setMineCounter = (value: number) => {
 export const getMineCounter = () => {
 	const mineCounter = document.getElementById('mineCounter')
 
-	if (!mineCounter) return -1
+	if (!mineCounter?.textContent) return -1
 
 	return +mineCounter.textContent
 }

@@ -48,7 +48,7 @@ const handleDiscover = (
 
 	safeSquares.textContent = (+safeSquares.textContent - 1).toString()
 
-	if (+(safeSquares as HTMLElement).textContent === 0) triggerWin()
+	if (+safeSquares.textContent === 0) triggerWin()
 
 	if (cellValue != 0) return // Do not continue if the cellValue is different than zero (it has mines in its surroundings)
 

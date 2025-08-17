@@ -6,7 +6,7 @@ export const triggerWin = () => {
 	const text = document.getElementById('won-text')
 	const totalTime = document.getElementById('timeCounter')
 
-	if (!totalTime) return
+	if (!totalTime?.textContent) return
 
 	const [min, sec] = totalTime.textContent.split(':')
 
