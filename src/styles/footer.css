@@ -1,0 +1,35 @@
+/* border-t-4 border-zinc-600 w-full px-10 py-10 mt-auto flex items-center justify-center flex-col text-white gap-5 */
+
+footer {
+	border-top: 4px solid rgb(82, 82, 92);
+	width: 100%;
+	padding: 40px;
+	margin-top: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	color: white;
+	gap: 20px;
+}
+
+footer div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+
+footer div a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	transition: all 0.3s;
+	text-decoration: none;
+	color: rgb(248, 250, 252);
+}
+
+footer div a:hover {
+	color: rgb(172, 170, 168);
+}

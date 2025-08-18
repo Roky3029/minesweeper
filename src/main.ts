@@ -5,6 +5,9 @@ import { handleReset } from './functions/handleReset.ts'
 import { handleModal } from './functions/modal.ts'
 import { handleClickingLogic } from './functions/handleClickingLogic.ts'
 import { getParametersFromLocalStorage } from './utils/accessLocalStorage.ts'
+import { generateBoard } from './functions/generateBoard.ts'
+import { setMineCounter } from './functions/setMineCounter.ts'
+import { calcMines } from './utils/calcMines.ts'
 
 // CSS files
 import './style.css'
@@ -14,9 +17,7 @@ import './styles/matrix.css'
 import './styles/modal.css'
 import './styles/win.css'
 import './styles/colors.css'
-import { generateBoard } from './functions/generateBoard.ts'
-import { setMineCounter } from './functions/setMineCounter.ts'
-import { calcMines } from './utils/calcMines.ts'
+import './styles/footer.css'
 
 const data = getParametersFromLocalStorage()
 const grid = data ? generateBoard(data.row, data.col) : generateBoard(10, 10)
